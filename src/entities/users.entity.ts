@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, DeleteDateColumn, OneToMany } from "typeorm";
+import Schedule from "./schedules.entity";
 
 @Entity('users')
 class User {
@@ -18,6 +19,8 @@ class User {
   updatedAt: string | Date
   @DeleteDateColumn({nullable: true})
   deletedAt: string | Date | null | undefined
+  @OneToMany(() => Schedule, schedule => schedule.user)
+  schedules: Schedule[]
 }
 
 export default User

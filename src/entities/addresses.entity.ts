@@ -15,7 +15,7 @@ class Address {
   city: string
   @Column({type: 'varchar', length: 2})
   state: string
-  @OneToOne(() => RealEstate)
+  @OneToOne(() => RealEstate, realState => realState.address )
   realState: RealEstate
 }
 

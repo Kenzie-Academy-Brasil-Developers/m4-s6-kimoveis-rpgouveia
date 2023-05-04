@@ -16,7 +16,7 @@ class RealEstate {
   createdAt: string | Date
   @UpdateDateColumn()
   updatedAt: string | Date
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, address => address.realState )
   @JoinColumn()
   address: Address
 }
