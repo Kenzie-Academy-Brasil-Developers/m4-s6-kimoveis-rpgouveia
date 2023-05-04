@@ -8,7 +8,7 @@ class User {
   nome: string
   @Column({type: 'varchar', length: 45, unique: true})
   email: string
-  @Column({type: 'boolean', default: 'false', nullable: true})
+  @Column({type: 'boolean', default: false, nullable: true})
   admin: boolean
   @Column({type: 'varchar', length: 120})
   password: string
