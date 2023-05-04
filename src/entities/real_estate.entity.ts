@@ -2,8 +2,8 @@ import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGenerate
 import Address from "./addresses.entity";
 
 
-@Entity('real_state')
-class RealState {
+@Entity('real_estate')
+class RealEstate {
   @PrimaryGeneratedColumn('increment')
   id: number
   @Column({type: 'boolean', default: false, nullable: true})
@@ -21,4 +21,4 @@ class RealState {
   address: Address
 }
 
-export default RealState
+export default RealEstate

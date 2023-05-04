@@ -1,5 +1,5 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import RealState from "./real_state.entity";
+import RealEstate from "./real_estate.entity";
 
 @Entity('addresses')
 class Address {
@@ -15,8 +15,8 @@ class Address {
   city: string
   @Column({type: 'varchar', length: 2})
   state: string
-  @OneToOne(() => RealState)
-  realState: RealState
+  @OneToOne(() => RealEstate)
+  realState: RealEstate
 }
 
 export default Address
