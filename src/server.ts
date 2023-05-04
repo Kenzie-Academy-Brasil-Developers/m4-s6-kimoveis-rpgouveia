@@ -1,13 +1,15 @@
 import app from './app'
 import { AppDataSource } from './data-source'
 
+const PORT: number = 3000
+
 AppDataSource.initialize()
     .then(() => {
-        console.log('Server is running')
-        app.listen(3000, () => {
-            console.log('Servidor executando')
+        console.log('Database is connected')
+        app.listen(PORT, () => {
+            console.log(`App running on port ${PORT}`)
         })
     })
-    .catch((err) => {
-        console.error('Error during Data Source initialization', err)
+    .catch((error) => {
+        console.error('Error during Data Source initialization', error)
     })
