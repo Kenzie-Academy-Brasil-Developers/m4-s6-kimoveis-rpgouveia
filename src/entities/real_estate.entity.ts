@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import Address from "./addresses.entity";
+import Category from "./categories.entity";
 
 
 @Entity('real_estate')
@@ -19,6 +20,8 @@ class RealEstate {
   @OneToOne(() => Address, address => address.realState )
   @JoinColumn()
   address: Address
+  @ManyToOne(() => Category, category => category.realEstates)
+  category: Category
 }
 
 export default RealEstate
