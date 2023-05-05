@@ -9,7 +9,7 @@ export class InitialMigration1683229244028 implements MigrationInterface {
                     "id" SERIAL NOT NULL,
                     "nome" character varying(45) NOT NULL,
                     "email" character varying(45) NOT NULL, 
-                    "admin" boolean DEFAULT 'false', 
+                    "admin" boolean DEFAULT false, 
                     "password" character varying(120) NOT NULL, 
                     "createdAt" TIMESTAMP NOT NULL DEFAULT now(), 
                     "updatedAt" TIMESTAMP NOT NULL DEFAULT now(), 
