@@ -22,8 +22,13 @@ const userSchemaResponse = userSchema.omit({
   password: true
 })
 
+const userSchemaEmailRequest = userSchema.pick({
+  email: true
+})
+
 export {
   userSchema,
   userSchemaRequest,
-  userSchemaResponse
+  userSchemaResponse,
+  userSchemaEmailRequest
 }
