@@ -3,8 +3,8 @@ import { z } from "zod";
 const userSchema = z.object({
   id: z.number(),
   name: z.string().max(45),
-  email: z.string().email(),
-  password: z.string(),
+  email: z.string().max(45).email(),
+  password: z.string().max(120),
   admin: z.boolean().default(false),
   createdAt: z.string(),
   updatedAt: z.string(),
