@@ -5,7 +5,7 @@ const userSchema = z.object({
   name: z.string().max(45),
   email: z.string().email(),
   password: z.string(),
-  admin: z.boolean().optional(),
+  admin: z.boolean().default(false),
   createdAt: z.string(),
   updatedAt: z.string(),
   deletedAt: z.string().nullish(),
@@ -27,11 +27,13 @@ const userSchemaEmailRequest = userSchema.pick({
 });
 
 const userListSchemaResponse = z.array(userSchemaResponse);
+const updateUserSchema = userSchemaRequest.omit({admin: true}).partial();
 
 export {
   userSchema,
   userSchemaRequest,
   userSchemaResponse,
   userSchemaEmailRequest,
-  userListSchemaResponse
+  userListSchemaResponse,
+  updateUserSchema
 };

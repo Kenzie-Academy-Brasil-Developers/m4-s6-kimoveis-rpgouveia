@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { createUserController, listUsersController } from "../controllers/users.controllers";
+import { createUserController, listUsersController, updateUserController } from "../controllers/users.controllers";
 import checkIfEmailExists from "../middlewares/checkIfEmailExists.middleware";
 import checkRequestBodyData from "../middlewares/checkRequestBodyData.middleware";
-import { userSchemaRequest } from "../schemas/users.schema";
+import { updateUserSchema, userSchemaRequest } from "../schemas/users.schema";
 import checkIfTokenIsValid from "../middlewares/checkIfTokenIsValid.middleware";
 import checkAdminStatus from "../middlewares/checkAdminStatus.middleware";
+import checkLoggedUserPermission from "../middlewares/checkLoggedUserPermission.middleware";
+import checkIfUserExists from "../middlewares/checkIfUserExists.middleware";
 
 const userRoutes: Router = Router();
 
@@ -19,6 +21,14 @@ userRoutes.get(
   checkIfTokenIsValid,
   checkAdminStatus,
   listUsersController
+);
+userRoutes.patch(
+  "/:id",
+  checkIfUserExists,
+  checkIfTokenIsValid,
+  checkLoggedUserPermission,
+  checkRequestBodyData(updateUserSchema),
+  updateUserController
 )
 
 export default userRoutes;

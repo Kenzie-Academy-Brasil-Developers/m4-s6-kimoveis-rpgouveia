@@ -3,9 +3,11 @@ import {
   tUserListResponse,
   tUserRequest,
   tUserResponse,
+  tUserUpdateRequest,
 } from "../interfaces/users.interfaces";
 import createUserService from "../services/users/createUser.service";
 import listUsersService from "../services/users/listUsers.service";
+import updateUserService from "../services/users/updateUser.service";
 
 const createUserController = async (
   request: Request,
@@ -24,4 +26,14 @@ const listUsersController = async (
   return response.json(userList);
 };
 
-export { createUserController, listUsersController };
+const updateUserController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  const userId: number = Number(request.params.id);
+  const userData: tUserUpdateRequest = request.body;
+  const updatedUser: tUserResponse = await updateUserService(userId, userData);
+  return response.json(updatedUser);
+};
+
+export { createUserController, listUsersController, updateUserController };

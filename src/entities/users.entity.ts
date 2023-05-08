@@ -7,6 +7,7 @@ import {
   DeleteDateColumn,
   OneToMany,
   BeforeInsert,
+  BeforeUpdate,
 } from "typeorm";
 import Schedule from "./schedules.entity";
 import * as bcrypt from "bcryptjs";
@@ -19,8 +20,8 @@ class User {
   name: string;
   @Column({ type: "varchar", length: 45, unique: true })
   email: string;
-  @Column({ type: "boolean", default: false, nullable: true })
-  admin: boolean | null | undefined;
+  @Column({ type: "boolean", default: false })
+  admin: boolean;
   @Column({ type: "varchar", length: 120 })
   password: string;
   @CreateDateColumn({ type: "date" })
@@ -34,6 +35,13 @@ class User {
   @BeforeInsert()
   hashUserPassword() {
     this.password = bcrypt.hashSync(this.password, 10);
+  }
+  @BeforeUpdate()
+  hashPassword() {
+    const isEncrypted: number = bcrypt.getRounds(this.password);
+    if (!isEncrypted) {
+      this.password = bcrypt.hashSync(this.password, 10);
+    }
   }
 }
 
