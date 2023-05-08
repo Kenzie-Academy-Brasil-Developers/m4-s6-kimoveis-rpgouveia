@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createUserController, listUsersController, updateUserController } from "../controllers/users.controllers";
+import { createUserController, deleteUserController, listUsersController, updateUserController } from "../controllers/users.controllers";
 import checkIfEmailExists from "../middlewares/checkIfEmailExists.middleware";
 import checkRequestBodyData from "../middlewares/checkRequestBodyData.middleware";
 import { updateUserSchema, userSchemaRequest } from "../schemas/users.schema";
@@ -29,6 +29,13 @@ userRoutes.patch(
   checkLoggedUserPermission,
   checkRequestBodyData(updateUserSchema),
   updateUserController
+)
+userRoutes.delete(
+  "/:id",
+  checkIfUserExists,
+  checkIfTokenIsValid,
+  checkAdminStatus,
+  deleteUserController
 )
 
 export default userRoutes;

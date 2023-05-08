@@ -8,6 +8,7 @@ import {
 import createUserService from "../services/users/createUser.service";
 import listUsersService from "../services/users/listUsers.service";
 import updateUserService from "../services/users/updateUser.service";
+import deleteUserService from "../services/users/deleteUser.service";
 
 const createUserController = async (
   request: Request,
@@ -36,4 +37,18 @@ const updateUserController = async (
   return response.json(updatedUser);
 };
 
-export { createUserController, listUsersController, updateUserController };
+const deleteUserController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  const userId: number = Number(request.params.id);
+  await deleteUserService(userId);
+  return response.status(204).send();
+};
+
+export {
+  createUserController,
+  listUsersController,
+  updateUserController,
+  deleteUserController,
+};
