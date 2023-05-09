@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
-import { tCategory, tCategoryRequest } from "../interfaces/categories.interfaces";
+import {
+  tCategory,
+  tCategoryList,
+  tCategoryRequest,
+} from "../interfaces/categories.interfaces";
 import createCategoryService from "../services/categories/createCategory.service";
-
+import listCategoriesService from "../services/categories/listCategories.service";
 
 const createCategoryController = async (
   request: Request,
@@ -12,6 +16,12 @@ const createCategoryController = async (
   return response.status(201).json(newCategory);
 };
 
-export {
-  createCategoryController,
-}
+const listCategoriesController = async (
+  _request: Request,
+  response: Response
+): Promise<Response> => {
+  const categoryList: tCategoryList = await listCategoriesService();
+  return response.json(categoryList);
+};
+
+export { createCategoryController, listCategoriesController };

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCategoryController } from "../controllers/categories.controllers";
+import { createCategoryController, listCategoriesController } from "../controllers/categories.controllers";
 import checkIfTokenIsValid from "../middlewares/checkIfTokenIsValid.middleware";
 import checkAdminStatus from "../middlewares/checkAdminStatus.middleware";
 import checkRequestBodyData from "../middlewares/checkRequestBodyData.middleware";
@@ -13,6 +13,10 @@ categoriesRoutes.post(
   checkAdminStatus,
   checkRequestBodyData(categorySchemaRequest),
   createCategoryController
+);
+categoriesRoutes.get(
+  "",
+  listCategoriesController
 );
 
 export default categoriesRoutes;

@@ -6,5 +6,6 @@ const categorySchema = z.object({
 });
 
 const categorySchemaRequest = categorySchema.omit({ id: true });
+const categoryListSchema = z.array(categorySchema);
 
-export { categorySchema, categorySchemaRequest };
+export { categorySchema, categorySchemaRequest, categoryListSchema };
