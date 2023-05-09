@@ -20,7 +20,7 @@ class RealEstate {
   @Column({ type: "boolean", default: false })
   sold: boolean;
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0 })
-  value: number;
+  value: number | string;
   @Column({ type: "int" })
   size: number;
   @CreateDateColumn({ type: "date" })
