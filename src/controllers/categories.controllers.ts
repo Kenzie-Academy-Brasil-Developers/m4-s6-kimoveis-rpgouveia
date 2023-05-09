@@ -6,6 +6,7 @@ import {
 } from "../interfaces/categories.interfaces";
 import createCategoryService from "../services/categories/createCategory.service";
 import listCategoriesService from "../services/categories/listCategories.service";
+import listRealEstateByCategoryService from "../services/categories/listRealEstateByCategory.service";
 
 const createCategoryController = async (
   request: Request,
@@ -24,4 +25,13 @@ const listCategoriesController = async (
   return response.json(categoryList);
 };
 
-export { createCategoryController, listCategoriesController };
+const listRealEstateByCategoryController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  const categoryId: number = Number(request.params.id);
+  const realEstateList = await listRealEstateByCategoryService(categoryId);
+  return response.json(realEstateList);
+};
+
+export { createCategoryController, listCategoriesController, listRealEstateByCategoryController };

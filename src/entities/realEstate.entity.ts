@@ -17,15 +17,15 @@ import Schedule from "./schedules.entity";
 class RealEstate {
   @PrimaryGeneratedColumn("increment")
   id: number;
-  @Column({ type: "boolean", default: false, nullable: true })
+  @Column({ type: "boolean", default: false })
   sold: boolean;
   @Column({ type: "decimal", precision: 12, scale: 2, default: 0 })
-  value: number | string;
+  value: number;
   @Column({ type: "int" })
   size: number;
-  @CreateDateColumn()
+  @CreateDateColumn({ type: "date" })
   createdAt: string | Date;
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "date" })
   updatedAt: string | Date;
   @OneToOne(() => Address, (address) => address.realState)
   @JoinColumn()

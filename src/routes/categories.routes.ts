@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createCategoryController, listCategoriesController } from "../controllers/categories.controllers";
+import { createCategoryController, listCategoriesController, listRealEstateByCategoryController } from "../controllers/categories.controllers";
 import checkIfTokenIsValid from "../middlewares/checkIfTokenIsValid.middleware";
 import checkAdminStatus from "../middlewares/checkAdminStatus.middleware";
 import checkRequestBodyData from "../middlewares/checkRequestBodyData.middleware";
@@ -17,6 +17,10 @@ categoriesRoutes.post(
 categoriesRoutes.get(
   "",
   listCategoriesController
+);
+categoriesRoutes.get(
+  "/:id/realEstate",
+  listRealEstateByCategoryController
 );
 
 export default categoriesRoutes;
