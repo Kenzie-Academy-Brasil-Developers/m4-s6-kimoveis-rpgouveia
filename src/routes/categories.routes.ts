@@ -4,6 +4,7 @@ import checkIfTokenIsValid from "../middlewares/checkIfTokenIsValid.middleware";
 import checkAdminStatus from "../middlewares/checkAdminStatus.middleware";
 import checkRequestBodyData from "../middlewares/checkRequestBodyData.middleware";
 import { categorySchemaRequest } from "../schemas/categories.schema";
+import checkIfCategoryIdExists from "../middlewares/checkIfCategoryIdExists.middleware";
 
 const categoriesRoutes: Router = Router();
 
@@ -20,6 +21,7 @@ categoriesRoutes.get(
 );
 categoriesRoutes.get(
   "/:id/realEstate",
+  checkIfCategoryIdExists,
   listRealEstateByCategoryController
 );
 

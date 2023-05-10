@@ -26,10 +26,10 @@ const listCategoriesController = async (
 };
 
 const listRealEstateByCategoryController = async (
-  request: Request,
+  _request: Request,
   response: Response
 ): Promise<Response> => {
-  const categoryId: number = Number(request.params.id);
+  const categoryId: number = response.locals.categoryId;
   const realEstateList = await listRealEstateByCategoryService(categoryId);
   return response.json(realEstateList);
 };

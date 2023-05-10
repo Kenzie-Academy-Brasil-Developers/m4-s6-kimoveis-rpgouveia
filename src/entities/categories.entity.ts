@@ -8,7 +8,7 @@ class Category {
   @Column({ type: "varchar", length: 45, unique: true })
   name: string;
   @OneToMany(() => RealEstate, (realEstate) => realEstate.category)
-  realEstates: RealEstate[];
+  realEstate: RealEstate[];
 }
 
 export default Category;
