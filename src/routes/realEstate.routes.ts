@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createRealEstateController } from "../controllers/realEstate.controllers";
+import { createRealEstateController, listAllRealEstatesController } from "../controllers/realEstate.controllers";
 import checkIfTokenIsValid from "../middlewares/checkIfTokenIsValid.middleware";
 import checkAdminStatus from "../middlewares/checkAdminStatus.middleware";
 import checkRequestBodyData from "../middlewares/checkRequestBodyData.middleware";
@@ -13,6 +13,10 @@ realEstateRoutes.post(
   checkAdminStatus,
   checkRequestBodyData(realEstateSchemaRequest),
   createRealEstateController
+);
+realEstateRoutes.get(
+  "", 
+  listAllRealEstatesController
 );
 
 export default realEstateRoutes;

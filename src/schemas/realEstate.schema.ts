@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { addressSchemaRequest } from "./addresses.schema";
+import { addressSchema, addressSchemaRequest } from "./addresses.schema";
 
 const realEstateSchema = z.object({
   id: z.number(),
@@ -19,4 +19,20 @@ const realEstateSchemaRequest = realEstateSchema.omit({
   updatedAt: true,
 });
 
-export { realEstateSchema, realEstateSchemaRequest };
+const realEstateSchemaResponse = z.object({
+  id: z.number(),
+  sold: z.boolean().default(false),
+  value: z.string().or(z.number().nonnegative()),
+  size: z.number().int().positive(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+  address: addressSchema
+});
+
+const realEstateListSchemaResponse = z.array(realEstateSchemaResponse);
+
+export {
+  realEstateSchema,
+  realEstateSchemaRequest,
+  realEstateListSchemaResponse,
+};
