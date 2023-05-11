@@ -21,7 +21,6 @@ const checkIfRealEstateExists = async (
   if (!realEstate) {
     throw new AppError('RealEstate not found', 404);
   }
-  response.locals.realEstateId = realEstateId;
   return next();
 };
 
