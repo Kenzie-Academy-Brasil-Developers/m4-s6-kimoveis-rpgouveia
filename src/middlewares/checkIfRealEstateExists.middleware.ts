@@ -12,10 +12,11 @@ const checkIfRealEstateExists = async (
 ): Promise<Response | void> => {
   const scheduleData: tScheduleRequest = request.body;
   const { realEstateId } = scheduleData;
+  const { id } = request.params;
   const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate);
   const realEstate: RealEstate | null = await realEstateRepository.findOne({
     where: {
-      id: realEstateId
+      id: realEstateId || Number(id)
     }
   });
   if (!realEstate) {

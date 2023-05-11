@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import createScheduleService from "../services/schedules/createSchedule.service";
 import { tScheduleRequest } from "../interfaces/schedules.interfaces";
+import listAllSchedulesByRealEstateService from "../services/schedules/listAllSchedules.service";
 
 const createScheduleController = async (
   request: Request,
@@ -12,4 +13,16 @@ const createScheduleController = async (
   return response.status(201).json(schedule);
 };
 
-export default createScheduleController;
+const listAllSchedulesByRealEstateController = async (
+  request: Request,
+  response: Response
+): Promise<Response> => {
+  const realEstateId: number = Number(request.params.id);
+  const schedules = await listAllSchedulesByRealEstateService(realEstateId);
+  return response.json(schedules)
+};
+
+export {
+  createScheduleController,
+  listAllSchedulesByRealEstateController
+};

@@ -11,7 +11,7 @@ const createScheduleService = async (
   const scheduleRepository: Repository<Schedule> = AppDataSource.getRepository(Schedule);
   const { date, hour, realEstateId } = scheduleData;
   
-  const checkUserSchedule = await scheduleRepository
+  const checkUserSchedule: Schedule[] = await scheduleRepository
     .createQueryBuilder("schedules")
     .where("schedules.user = :userId", { userId })
     .andWhere("schedules.date = :date", { date })
@@ -21,7 +21,7 @@ const createScheduleService = async (
     throw new AppError('User schedule to this real estate at this date and time already exists', 409);
   }
 
-  const checkRealEstateSchedule = await scheduleRepository
+  const checkRealEstateSchedule: Schedule[] = await scheduleRepository
     .createQueryBuilder("schedules")
     .where("schedules.realEstate = :realEstateId", { realEstateId })
     .andWhere("schedules.date = :date", { date })
