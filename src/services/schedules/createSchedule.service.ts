@@ -2,12 +2,12 @@ import { Repository } from "typeorm";
 import { Schedule } from "../../entities";
 import { AppDataSource } from "../../data-source";
 import { AppError } from "../../error";
-import { tScheduleRequest } from "../../interfaces/schedules.interfaces";
+import { tScheduleRequest, tScheduleResponse } from "../../interfaces/schedules.interfaces";
 
 const createScheduleService = async (
   userId: number,
   scheduleData: tScheduleRequest
-) => {
+): Promise<tScheduleResponse> => {
   const scheduleRepository: Repository<Schedule> = AppDataSource.getRepository(Schedule);
   const { date, hour, realEstateId } = scheduleData;
 
@@ -38,7 +38,7 @@ const createScheduleService = async (
     user: { id: userId },
   });
   await scheduleRepository.save(schedule);
-  const message = { message: "Schedule created" };
+  const message: tScheduleResponse = { message: "Schedule created" };
   return message;
 };
 

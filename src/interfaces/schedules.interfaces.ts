@@ -6,5 +6,8 @@ import {
 
 type tSchedule = z.infer<typeof scheduleSchema>;
 type tScheduleRequest = z.infer<typeof scheduleSchemaRequest>;
+type tScheduleResponse = {
+  message: string;
+};
 
-export { tSchedule, tScheduleRequest };
+export { tSchedule, tScheduleRequest, tScheduleResponse };

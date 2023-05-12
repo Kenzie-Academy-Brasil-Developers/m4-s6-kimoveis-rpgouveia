@@ -4,10 +4,15 @@ import { Address, Category, RealEstate } from "../../entities";
 import { AppDataSource } from "../../data-source";
 import { AppError } from "../../error";
 
-const createRealEstateService = async (realEstateData: tRealEstateRequest) => {
-  const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate);
-  const addressRepository: Repository<Address> = AppDataSource.getRepository(Address);
-  const categoryRepository: Repository<Category> = AppDataSource.getRepository(Category);
+const createRealEstateService = async (
+  realEstateData: tRealEstateRequest
+): Promise<RealEstate> => {
+  const realEstateRepository: Repository<RealEstate> =
+    AppDataSource.getRepository(RealEstate);
+  const addressRepository: Repository<Address> =
+    AppDataSource.getRepository(Address);
+  const categoryRepository: Repository<Category> =
+    AppDataSource.getRepository(Category);
 
   const category: Category | null = await categoryRepository.findOne({
     where: {
