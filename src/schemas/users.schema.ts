@@ -27,7 +27,7 @@ const userSchemaEmailRequest = userSchema.pick({
 });
 
 const userListSchemaResponse = z.array(userSchemaResponse);
-const updateUserSchema = userSchemaRequest.omit({admin: true}).partial();
+const updateUserSchema = userSchemaRequest.omit({ admin: true }).partial();
 
 export {
   userSchema,
@@ -35,5 +35,5 @@ export {
   userSchemaResponse,
   userSchemaEmailRequest,
   userListSchemaResponse,
-  updateUserSchema
+  updateUserSchema,
 };

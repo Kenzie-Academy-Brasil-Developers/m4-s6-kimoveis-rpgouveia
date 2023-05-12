@@ -6,8 +6,8 @@ const listAllRealEstatesService = async () => {
   const realEstateRepository: Repository<RealEstate> = AppDataSource.getRepository(RealEstate);
   const realEstates: RealEstate[] = await realEstateRepository.find({
     relations: {
-      address: true
-    }
+      address: true,
+    },
   });
   return realEstates;
 };

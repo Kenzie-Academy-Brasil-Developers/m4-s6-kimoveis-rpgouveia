@@ -5,12 +5,9 @@ const scheduleSchema = z.object({
   date: z.string().regex(/^(\d{4})(\/)(\d{2})(\/)(\d{2})$/),
   hour: z.string().regex(/^\d{2}:\d{2}$/),
   realEstateId: z.number(),
-  userId: z.number()
+  userId: z.number(),
 });
 
-const scheduleSchemaRequest = scheduleSchema.omit({ id: true, userId: true })
+const scheduleSchemaRequest = scheduleSchema.omit({ id: true, userId: true });
 
-export {
-  scheduleSchema,
-  scheduleSchemaRequest
-};
+export { scheduleSchema, scheduleSchemaRequest };

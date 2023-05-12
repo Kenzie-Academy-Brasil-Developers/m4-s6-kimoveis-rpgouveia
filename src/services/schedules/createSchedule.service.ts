@@ -10,15 +10,15 @@ const createScheduleService = async (
 ) => {
   const scheduleRepository: Repository<Schedule> = AppDataSource.getRepository(Schedule);
   const { date, hour, realEstateId } = scheduleData;
-  
+
   const checkUserSchedule: Schedule[] = await scheduleRepository
     .createQueryBuilder("schedules")
     .where("schedules.user = :userId", { userId })
     .andWhere("schedules.date = :date", { date })
     .andWhere("schedules.hour = :hour", { hour })
-    .getMany()
+    .getMany();
   if (checkUserSchedule.length > 0) {
-    throw new AppError('User schedule to this real estate at this date and time already exists', 409);
+    throw new AppError("User schedule to this real estate at this date and time already exists", 409);
   }
 
   const checkRealEstateSchedule: Schedule[] = await scheduleRepository
@@ -26,9 +26,9 @@ const createScheduleService = async (
     .where("schedules.realEstate = :realEstateId", { realEstateId })
     .andWhere("schedules.date = :date", { date })
     .andWhere("schedules.hour = :hour", { hour })
-    .getMany()
+    .getMany();
   if (checkRealEstateSchedule.length > 0) {
-    throw new AppError('Schedule to this real estate at this date and time already exists', 409);
+    throw new AppError("Schedule to this real estate at this date and time already exists", 409);
   }
 
   const schedule: Schedule = scheduleRepository.create({
@@ -38,7 +38,7 @@ const createScheduleService = async (
     user: { id: userId },
   });
   await scheduleRepository.save(schedule);
-  const message = { message: 'Schedule created' };
+  const message = { message: "Schedule created" };
   return message;
 };
 

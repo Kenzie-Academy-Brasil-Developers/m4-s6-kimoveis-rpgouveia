@@ -33,7 +33,6 @@ const createSessionService = async (login: tLoginRequest) => {
       subject: String(user.id),
     }
   );
-
   return { token };
 };
 

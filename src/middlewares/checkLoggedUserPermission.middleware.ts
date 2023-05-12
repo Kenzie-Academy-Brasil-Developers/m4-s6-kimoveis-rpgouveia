@@ -9,11 +9,9 @@ const checkLoggedUserPermission = async (
   const userId = Number(request.params.id);
   const isAdmin = response.locals.admin;
   const loggedUserId = Number(response.locals.userId);
-
   if (!isAdmin && loggedUserId !== userId) {
     throw new AppError("Insufficient permission", 403);
   }
-
   return next();
 };
 

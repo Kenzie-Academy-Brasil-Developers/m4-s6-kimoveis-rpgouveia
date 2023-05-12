@@ -26,7 +26,7 @@ const realEstateSchemaResponse = z.object({
   size: z.number().int().positive(),
   createdAt: z.string(),
   updatedAt: z.string(),
-  address: addressSchema
+  address: addressSchema,
 });
 
 const realEstateListSchemaResponse = z.array(realEstateSchemaResponse);

@@ -9,15 +9,15 @@ const createRealEstateController = async (
 ): Promise<Response> => {
   const realEstateData: tRealEstateRequest = request.body;
   const newRealEstate = await createRealEstateService(realEstateData);
-  return response.status(201).json(newRealEstate)
+  return response.status(201).json(newRealEstate);
 };
 
 const listAllRealEstatesController = async (
   request: Request,
   response: Response
-): Promise <Response> => {
+): Promise<Response> => {
   const realEstateList = await listAllRealEstatesService();
-  return response.json(realEstateList)
+  return response.json(realEstateList);
 };
 
 export { createRealEstateController, listAllRealEstatesController };
