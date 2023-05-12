@@ -8,8 +8,11 @@ import { AppDataSource } from "../../data-source";
 import { AppError } from "../../error";
 import { categorySchema } from "../../schemas/categories.schema";
 
-const createCategoryService = async (categoryData: tCategoryRequest) => {
-  const categoryRepository: Repository<Category> = AppDataSource.getRepository(Category);
+const createCategoryService = async (
+  categoryData: tCategoryRequest
+): Promise<tCategory> => {
+  const categoryRepository: Repository<Category> =
+    AppDataSource.getRepository(Category);
   const category: Category | null = await categoryRepository.findOne({
     where: {
       name: categoryData.name,

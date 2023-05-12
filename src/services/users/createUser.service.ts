@@ -4,7 +4,9 @@ import User from "../../entities/users.entity";
 import { AppDataSource } from "../../data-source";
 import { userSchemaResponse } from "../../schemas/users.schema";
 
-const createUserService = async (userData: tUserRequest) => {
+const createUserService = async (
+  userData: tUserRequest
+): Promise<tUserResponse> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
   const createdUser: User = userRepository.create(userData);
   await userRepository.save(createdUser);

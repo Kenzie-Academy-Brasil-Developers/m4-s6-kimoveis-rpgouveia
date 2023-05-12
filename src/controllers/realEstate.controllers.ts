@@ -13,7 +13,7 @@ const createRealEstateController = async (
 };
 
 const listAllRealEstatesController = async (
-  request: Request,
+  _request: Request,
   response: Response
 ): Promise<Response> => {
   const realEstateList = await listAllRealEstatesService();
